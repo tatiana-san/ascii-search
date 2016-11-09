@@ -7,16 +7,20 @@ data=cfile.read()
 cfile.close()
 
 data_decoded = str(data.decode('ascii', errors='ignore'))
-n=300 #number of bytes to print
+n=500 #number of bytes to print
 
 word=raw_input("Enter the key word: ")
 
-while (word!="endcode"):  
+while (True):  
     if word in data_decoded:
-        indexW=data_decoded.index(word)
-        areaW=data_decoded[indexW:indexW+n]
-        print "Index: ", indexW
-        print "Next", n, "bytes:\n\n", areaW, "\n\n"
+        print "Number of occurances: ", data_decoded.count(word), "\n"
+        previous_index=0
+        for i in range(0, data_decoded.count(word)):
+            current_index=data_decoded.find(word, previous_index, len(data_decoded))
+            print "Occurance", i+1, "( starts at byte #", current_index,"):\n"
+            print data_decoded[current_index:current_index+n]
+            print "------------------------------"
+            previous_index=current_index+1     
     else:
         print "not found...\n\n"
     word=raw_input("Enter the key word: ")
