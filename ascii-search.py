@@ -3,15 +3,16 @@ import StringIO
 #This programme searchs custom string and returns the next n bytes after the first occurance
 
 cfile=open("1.pdf", "rb")
-data=cfile.read()
+data=cfile.read() #read the data from file
 cfile.close()
 
-data_decoded = str(data.decode('ascii', errors='ignore'))
+data_decoded = str(data.decode('ascii', errors='ignore')) #create an ASCII string with the data from file
 n=500 #number of bytes to print
 
-word=raw_input("Enter the key word: ")
+word=raw_input("Enter the key word: ") #enter the word you'd like to find in the file
 
-while (True):  
+while (True):   #User is asked (in loop) to enter a search word. If it is in the file, the number of occurances is returned
+                #along with the first n symbols after each occurance (in list). If not - "not found..." 
     if word in data_decoded:
         print "Number of occurances: ", data_decoded.count(word), "\n"
         previous_index=0
